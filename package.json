@@ -1,0 +1,22 @@
+{
+  "name": "video-maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresgallego/video-maker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andresgallego/video-maker/issues"
+  },
+  "homepage": "https://github.com/andresgallego/video-maker#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  }
+}
