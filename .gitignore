@@ -62,4 +62,3 @@ typings/
 
 # credentials
 credentials/*.json
-credentials/*.md
