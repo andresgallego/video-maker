@@ -2,20 +2,26 @@ const algorithmia = require("algorithmia");
 const algorithmiaApiKey = require("../credentials/algorithmia.json").apiKey;
 const sentenceBoundaryDetection = require("sbd");
 const { apikey, url } = require("../credentials/watson-nlu.json");
+const NaturalLanguageUnderstandingV1 = require("ibm-watson/natural-language-understanding/v1.js");
 
-var NaturalLanguageUnderstandingV1 = require("ibm-watson/natural-language-understanding/v1.js");
-var nlu = new NaturalLanguageUnderstandingV1({
+const nlu = new NaturalLanguageUnderstandingV1({
   iam_apikey: apikey,
   version: "2018-04-05",
   url
 });
 
-async function robot(content) {
+const state = require("./state.js");
+
+async function robot() {
+  const content = state.load();
+
   await fetchContentFromWikipedia(content);
   sanitizeContent(content);
   breakContentIntoSentences(content);
   limitMaximumSentences(content);
   await fetchKeywordsOfAllSentences(content);
+
+  state.save(content);
 
   async function fetchContentFromWikipedia(content) {
     const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey);
